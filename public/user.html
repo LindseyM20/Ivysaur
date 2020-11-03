@@ -15,55 +15,54 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-default">
+<nav class="navbar navbar-default">    
     <div class="container-fluid">
-      <div class="navbar-header">
-        <h1 class="navbarText">xkcDaily</h1>
-      </div>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item">
-          <p class="navbarText navWelcome">Welcome <span class="navbar-brand member-name"></span></p>
-        </li>
-        <li class="nav-item">
-          <a class="navbarText navLogout" href="/logout">Logout</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <h3 class="date"></h3>
-        <img class="comic">
-      </div>
-      <div class="col-md-6 col-md-offset-3">
-        <p>Select another date: <input type="text" id="datepicker"></p>
-        <div class="card" style="width: 24rem;">
-          <div class="card-body">
-            <h5 class="card-title">Add Event</h5>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Create New Event" aria-label="New Event Field"
-                aria-describedby="basic-addon2">
-              <input type="text" class="form-control" placeholder="Time of Event" aria-label="New Event Field"
-                aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button">Save</button>
-              </div>
-            </div>
-          </div>
-          <ul class="list-group list-group-flush">
-            <!-- <li class="list-group-item">placeholder</li> -->
-          </ul>
+        <div class="navbar-header">
+            <h1 class="navbarText">xkcDaily</h1>
         </div>
-      </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item">
+                <p class="navbarText navWelcome">Welcome <span class="navbar-brand member-name"></span></p>
+            </li>
+            <li class="nav-item">
+                <a class="navbarText navLogout" href="/logout">Logout</a>
+            </li>
+        </ul>
     </div>
   </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h3 class="date"></h3>
+            <img class="comic">
+        </div>
+        <div class="col">
+            <p>Select another date: <input type="text" id="datepicker"></p>
+            <div class="card" style="width: 24rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Add Event</h5>
+                    <form class="addEvent form-group mb-3">
+                        <input type="text" class="form-control" id="eventInput" placeholder="Create New Event" aria-label="New Event Field" aria-describedby="basic-addon2">
+                        <input type="text" class="form-control" id="eventTime" placeholder="Time of Event"  aria-label="New Event Field" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Save</button>
+                        </div>
+                    </form>
+                </div>
+                <ul class="list-group list-group-flush">
+                <!-- <li class="list-group-item">placeholder</li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script type="text/javascript" src="js/user.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script type="text/javascript" src="js/user.js"></script>
 
 </body>
 
