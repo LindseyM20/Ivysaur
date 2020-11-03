@@ -1,5 +1,8 @@
 // event listeners for user.html
 $(document).ready(function() {
+    let eventForm = $("form.addEvent");
+    let event_input = $("input#eventInput");
+    let event_time = $("input#eventTime");
     // This file just does a GET request to figure out which user is logged in
     // and updates the HTML on the page
     $.get("/api/user_data").then(function(data) {
@@ -69,4 +72,24 @@ $(document).ready(function() {
             }; 
         });
     });
+    eventForm.on("submit", function(event) {
+        event.preventDefault();
+        let newEvent = {
+            time: event_time.val().trim(),
+            event: event_input.val().trim()
+        };
+        addNewEvent(newEvent.time, newEvent.event);
+        event_input.val("");
+        event_time.val("");
+    })
+
+    function addNewEvent (time, event) {
+        $.post("/api/newEvent", {
+            time,
+            event
+        }).then(function() {
+            console.log("Event Added Successfully: " + time + event)
+            location.reload();
+        })
+    }
 });
