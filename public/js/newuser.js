@@ -1,0 +1,1 @@
+// event listeners for newuser.html
