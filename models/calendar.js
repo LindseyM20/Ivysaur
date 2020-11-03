@@ -5,6 +5,7 @@ module.exports = function(sequelize, DataTypes) {
       date: {
           type: DataTypes.DATEONLY,
           allowNull: false,
+          defaultValue: Sequelize.NOW
       },
 
       comicName: {
