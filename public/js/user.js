@@ -34,5 +34,39 @@ $(document).ready(function() {
         } 
     })
     $(".date").html(moment().format("dddd, MMMM Do YYYY"));
-    $("#datepicker").datePicker();
+
+    $(function() {
+        $("#datepicker").datePicker();
+        let selectDate = $(".selector").datePicker("getDate");
+
+        let comicNum = Math.floor(Math.random() * 2380);
+
+        $(".comic").attr("src", "");
+
+        $.ajax({
+            method: "GET",
+            url: "http://xkcd.com/" + comicNum + "/info.0.json"
+        }).then(function(response) {
+            $(".comic").attr("src", response.json.img)
+            // Creating object to send to server.
+            let comic = {
+                name: response.title,
+                img: response.img,
+                num: response.num
+            }
+            $.post("/api/comic", comic)
+            .then(function(data) {
+              console.log("Comic added successfully", data);
+            });
+        })
+        // add functionality with date selected
+        $.get("/api/events").then(function(data) {
+            let eventTime = data.time
+            let event = data.event
+            for (i = 0; i < event.length; i++) {
+                let addEvent = $("<li>").text("Time: " + eventTime + "Event: " + event).addClass("list-group-item");
+                $(".list-group").append(addEvent);
+            }; 
+        });
+    });
 });
