@@ -1,6 +1,3 @@
-# Please stop making us change this.
-config/config.json
-
 # Logs
 logs
 *.log
