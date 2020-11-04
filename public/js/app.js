@@ -17,6 +17,7 @@ $(document).ready(function() {
         url: "http://xkcd.com/info.0.json"
     }).then(function(response) {
         $(".comic").attr("src", response.json.img)
+        console.log(response.json.img)
         // Creating object to send to server.
         let comic = {
             comicName: response.title,
@@ -28,7 +29,7 @@ $(document).ready(function() {
           console.log("Comic added successfully", data);
         });
     })
-    $.get("/api/events").then(function(data) {
+    $.get("/api/tasks").then(function(data) {
         let eventTime = data.taskTime
         let event = data.taskName
         let id = data.id
