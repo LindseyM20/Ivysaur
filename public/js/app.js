@@ -29,8 +29,8 @@ $(document).ready(function() {
         });
     })
     $.get("/api/events").then(function(data) {
-        let eventTime = data.time
-        let event = data.event
+        let eventTime = data.taskTime
+        let event = data.taskName
         let id = data.id
         for (i = 0; i < event.length; i++) {
             let addEvent = $("<li>").text("Time: " + eventTime + "Event: " + event).addClass("list-group-item");
@@ -66,8 +66,8 @@ $(document).ready(function() {
         })
         // add functionality with date selected
         $.get("/api/tasks").then(function(data) {
-            let eventTime = data.time
-            let event = data.event
+            let eventTime = data.taskTime
+            let event = data.taskName
             let id = data.id
             for (i = 0; i < event.length; i++) {
                 let addEvent = $("<li>").text("Time: " + eventTime + "Event: " + event).addClass("list-group-item");
@@ -89,10 +89,10 @@ $(document).ready(function() {
 
     function addNewEvent (time, event) {
         $.post("/api/newEvent", {
-            date: time,
+            taskTime: time,
             taskName: event
         }).then(function(data) {
-            console.log("Event Added Successfully: " + data.date + data.taskName)
+            console.log("Event Added Successfully: " + data.taskTime + data.taskName)
             location.reload();
         })
     }
