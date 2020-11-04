@@ -19,9 +19,9 @@ $(document).ready(function() {
         $(".comic").attr("src", response.json.img)
         // Creating object to send to server.
         let comic = {
-            name: response.title,
-            img: response.img,
-            num: response.num
+            comicName: response.title,
+            imgURL: response.img,
+            postNum: response.num
         }
         $.post("/api/comic", comic)
         .then(function(data) {
@@ -53,9 +53,9 @@ $(document).ready(function() {
             $(".comic").attr("src", response.json.img)
             // Creating object to send to server.
             let comic = {
-                name: response.title,
-                img: response.img,
-                num: response.num
+                comicName: response.title,
+                imgURL: response.img,
+                postNum: response.num
             }
             $.post("/api/comic", comic)
             .then(function(data) {
@@ -63,7 +63,7 @@ $(document).ready(function() {
             });
         })
         // add functionality with date selected
-        $.get("/api/events").then(function(data) {
+        $.get("/api/tasks").then(function(data) {
             let eventTime = data.time
             let event = data.event
             for (i = 0; i < event.length; i++) {
@@ -85,10 +85,10 @@ $(document).ready(function() {
 
     function addNewEvent (time, event) {
         $.post("/api/newEvent", {
-            time,
-            event
-        }).then(function() {
-            console.log("Event Added Successfully: " + time + event)
+            date: time,
+            taskName: event
+        }).then(function(data) {
+            console.log("Event Added Successfully: " + data.date + data.taskName)
             location.reload();
         })
     }
