@@ -31,9 +31,11 @@ $(document).ready(function() {
     $.get("/api/events").then(function(data) {
         let eventTime = data.time
         let event = data.event
+        let id = data.id
         for (i = 0; i < event.length; i++) {
             let addEvent = $("<li>").text("Time: " + eventTime + "Event: " + event).addClass("list-group-item");
             $(".list-group").append(addEvent);
+            addEvent.append("<button>").text("DELETE").addClass("delete").attr("data-index", id);
         } 
     })
     $(".date").html(moment().format("dddd, MMMM Do YYYY"));
@@ -66,9 +68,11 @@ $(document).ready(function() {
         $.get("/api/events").then(function(data) {
             let eventTime = data.time
             let event = data.event
+            let id = data.id
             for (i = 0; i < event.length; i++) {
                 let addEvent = $("<li>").text("Time: " + eventTime + "Event: " + event).addClass("list-group-item");
                 $(".list-group").append(addEvent);
+                addEvent.append("<button>").text("DELETE").addClass("delete").attr("data-index", id);
             }; 
         });
     });
@@ -92,4 +96,18 @@ $(document).ready(function() {
             location.reload();
         })
     }
+
+    $(".delete").on("click", function(event) {
+        event.preventDefault();
+
+        $.ajax("/api/cats" + id, {
+            id: $(this.data-index),
+            type: "DELETE"
+        }).then(
+            function() {
+                console.log("Event deleted " + id)
+                location.reload();
+            }
+        );
+    });
 });
