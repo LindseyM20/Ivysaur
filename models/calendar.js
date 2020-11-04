@@ -31,6 +31,9 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false
       }
     });
+    Calendar.hasMany(models.Task, {
+      onDelete: "cascade"
+    });
   };
 
   return Calendar;
