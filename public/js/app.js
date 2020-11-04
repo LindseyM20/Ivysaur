@@ -3,6 +3,14 @@ $(document).ready(function() {
     let eventForm = $("form.addEvent");
     let event_input = $("input#eventInput");
     let event_time = $("input#eventTime");
+
+    $(".date").html(moment().format("dddd, MMMM Do YYYY"));
+
+    $(".selector").datepicker({
+        currentText: "Now"
+    })
+    
+    let date = $(".selector").datepicker("option", "currentText", "yy-mm-dd")
     // This file just does a GET request to figure out which user is logged in
     // and updates the HTML on the page
     $.get("/api/user_data").then(function(data) {
@@ -29,7 +37,7 @@ $(document).ready(function() {
           console.log("Comic added successfully", data);
         });
     })
-    $.get("/api/tasks").then(function(data) {
+    $.get("/api/tasks/" + date).then(function(data) {
         let eventTime = data.taskTime
         let event = data.taskName
         let id = data.id
@@ -38,8 +46,7 @@ $(document).ready(function() {
             $(".list-group").append(addEvent);
             addEvent.append("<button>").text("DELETE").addClass("delete").attr("data-index", id);
         } 
-    })
-    $(".date").html(moment().format("dddd, MMMM Do YYYY"));
+    }) 
 
     $(function() {
         $("#datepicker").datePicker();
