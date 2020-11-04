@@ -17,6 +17,7 @@ $(document).ready(function() {
         url: "http://xkcd.com/info.0.json"
     }).then(function(response) {
         $(".comic").attr("src", response.json.img)
+        console.log(response.json.img)
         // Creating object to send to server.
         let comic = {
             comicName: response.title,
