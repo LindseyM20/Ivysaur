@@ -2,7 +2,7 @@ module.exports = function (sequelize, DataTypes) {
     let Task = sequelize.define("Task", {
         //Coulumns 
         date: {
-            type: DataTypes.DATEONLY,
+            type: DataTypes.STRING,
             allowNull: false,
             defaultValue: sequelize.NOW
         },
@@ -14,7 +14,7 @@ module.exports = function (sequelize, DataTypes) {
 
         taskBody: {
             type: DataTypes.STRING,
-            allowNull: false
+            // allowNull: false
         },
 
     });
