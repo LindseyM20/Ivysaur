@@ -49,8 +49,8 @@ $(document).ready(function() {
     }) 
 
     $(function() {
-        $("#datepicker").datePicker();
-        let selectDate = $(".selector").datePicker("getDate");
+        $("#datepicker").datepicker();
+        let selectDate = $(".selector").datepicker("getDate");
 
         let comicNum = Math.floor(Math.random() * 2380);
 
