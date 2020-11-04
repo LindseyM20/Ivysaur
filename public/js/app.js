@@ -53,9 +53,9 @@ $(document).ready(function() {
             $(".comic").attr("src", response.json.img)
             // Creating object to send to server.
             let comic = {
-                name: response.title,
-                img: response.img,
-                num: response.num
+                comicName: response.title,
+                imgURL: response.img,
+                postNum: response.num
             }
             $.post("/api/comic", comic)
             .then(function(data) {
