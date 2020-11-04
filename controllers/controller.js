@@ -8,7 +8,9 @@ module.exports = function(app) {
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
-    res.json(req.user);
+    // If this function gets called, authentication was successful.
+    // `req.user` contains the authenticated user.
+    res.redirect('/user/' + req.user.username);
   });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
@@ -27,6 +29,30 @@ module.exports = function(app) {
       });
   });
 
+  app.post("/api/comic", function(req, res) {
+    db.Calendar.create(req)
+  })
+  // app.get("/api/current_comic", function(req, res) {
+
+  // })
+
+  app.post("/api/newEvent", function(req, res) {
+    db.Task.create(req.body).then(function(data) {
+      res.json(data);
+    });
+  })
+
+  // Gets all dates and tasks based on the user's email.
+  app.get("/api/tasks", function(req, res) {
+    db.User.findAll({
+      where: {
+        email: req.user.email
+      },
+      include: [db.Calendar, db.Task]
+    }).then(function(data) {
+      res.json(data);
+    });
+  });
   // // Route for logging user out
   // app.get("/logout", function(req, res) {
   //   req.logout();
@@ -34,17 +60,17 @@ module.exports = function(app) {
   // });
 
   // // Route for getting some data about our user to be used client side
-  // app.get("/api/user_data", function(req, res) {
-  //   if (!req.user) {
-  //     // The user is not logged in, send back an empty object
-  //     res.json({});
-  //   } else {
-  //     // Otherwise send back the user's email and id
-  //     // Sending back a password, even a hashed password, isn't a good idea
-  //     res.json({
-  //       email: req.user.email,
-  //       id: req.user.id
-  //     });
-  //   }
-  // });
+ app.get("/api/user_data", function(req, res) {
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      // Otherwise send back the user's email and id
+      // Sending back a password, even a hashed password, isn't a good idea
+      res.json({
+        email: req.user.email,
+        id: req.user.id
+      });
+    }
+  });
 };
