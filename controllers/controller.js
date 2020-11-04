@@ -42,6 +42,17 @@ module.exports = function(app) {
     });
   })
 
+  // Deletes task when delete button is pressed.
+  app.delete("/api/task/", function(req, res) {
+    db.task.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(data) {
+      res.json(data);
+    });
+  });
+
   // Gets all dates and tasks based on the user's email.
   app.get("/api/tasks", function(req, res) {
     db.User.findAll({
