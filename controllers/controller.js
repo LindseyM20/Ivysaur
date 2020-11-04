@@ -10,7 +10,7 @@ module.exports = function(app) {
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
-    res.redirect('/user/' + req.user.username);
+    res.redirect('/user');
   });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
@@ -22,7 +22,7 @@ module.exports = function(app) {
       password: req.body.password
     })
       .then(function() {
-        res.redirect(307, "/user");
+        res.redirect(307, "/api/login");
       })
       .catch(function(err) {
         res.status(401).json(err);
