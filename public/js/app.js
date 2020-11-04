@@ -29,7 +29,7 @@ $(document).ready(function() {
           console.log("Comic added successfully", data);
         });
     })
-    $.get("/api/events").then(function(data) {
+    $.get("/api/tasks").then(function(data) {
         let eventTime = data.taskTime
         let event = data.taskName
         let id = data.id
