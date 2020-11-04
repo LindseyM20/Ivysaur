@@ -100,7 +100,7 @@ $(document).ready(function() {
     $(".delete").on("click", function(event) {
         event.preventDefault();
 
-        $.ajax("/api/cats" + id, {
+        $.ajax("/api/task/", {
             id: $(this.data-index),
             type: "DELETE"
         }).then(
