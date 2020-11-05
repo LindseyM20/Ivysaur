@@ -100,8 +100,9 @@ $(document).ready(function() {
 
         getEvents(userId, newDate);
 
-        $.get("/api/saved_comic", newDate).then(function(data) {
-            if (newDate == data.date) {
+        $.get("/api/saved_comic/" + newDate.replace(/\//g, "%2F")).then(function(data) {
+            console.log("got this", data)
+        if (newDate == data.date) {
                 $(".comic").removeAttr("src").attr("src", data.imgURL);
             }
             else {
