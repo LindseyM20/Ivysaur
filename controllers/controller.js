@@ -81,11 +81,11 @@ module.exports = function(app) {
 
   // Gets all dates and tasks based on the user's email.
 
-  // // Route for logging user out
-  // app.get("/logout", function(req, res) {
-  //   req.logout();
-  //   res.redirect("/");
-  // });
+  // Route for logging user out
+  app.get("/logout", function(req, res) {
+    req.logout();
+    res.redirect("/");
+  });
 
   // // Route for getting some data about our user to be used client side
 
