@@ -93,10 +93,10 @@ $(document).ready(function() {
         event.preventDefault();
 
         $.ajax("/api/task/", {
-            id: $(this.data - index),
+            id: $(this.data-index),
             type: "DELETE"
         }).then(
-            function () {
+            function() {
                 console.log("Event deleted " + id)
                 location.reload();
             }
