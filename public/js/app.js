@@ -123,7 +123,8 @@ $(document).ready(function() {
                 date: diffDate,
                 comicName: response.title,
                 imgURL: response.img,
-                postNum: response.num
+                postNum: response.num,
+                UserId: userId
             }
 
             saveComic(rando);
