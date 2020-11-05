@@ -118,9 +118,4 @@ $(document).ready(function() {
             }
         );
     });
-
-    $("#INSERT ID OF LOGOUT BUTTON HERE").on("click", function(event) {
-        event.preventDefault();
-        $.get("/logout")
-    })
 });
