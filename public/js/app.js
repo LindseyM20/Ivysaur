@@ -25,10 +25,10 @@ $(document).ready(function() {
                     let delButton = $("<button>").text("Delete").attr("data-index", data[i].id).addClass("delButton");
                     addEvent.append(delButton);
                     addedEvents.append(addEvent);
-                }
-            }
-        })
-    }
+                };
+            };
+        });
+    };
 
     eventForm.on("submit", function(event) {
         event.preventDefault();
@@ -78,7 +78,8 @@ $(document).ready(function() {
             date: currentDate[0].innerHTML,
             comicName: response.title,
             imgURL: response.img,
-            postNum: response.num
+            postNum: response.num,
+            UserId: userId
         }
         saveComic(comic)
     })
