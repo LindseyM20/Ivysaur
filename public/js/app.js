@@ -1,19 +1,28 @@
 // event listeners for user.html
-$(document).ready(function() {
+$(document).ready(function () {
     let eventForm = $("form.addEvent");
     let event_input = $("input#eventInput");
     let event_time = $("input#eventTime");
+    let date = $("#datepicker");
 
     $(".date").html(moment().format("dddd, MMMM Do YYYY"));
 
-    $(".selector").datepicker({
-        currentText: "Now"
-    })
-    
-    let date = $(".selector").datepicker("option", "currentText", "yy-mm-dd")
+    // $(".selector").datepicker({
+    //     currentText: "Now"
+    // });
+    // $(function () {
+    //     $("#datepicker").datepicker();
+    // });
+    // $(".selector").datepicker({
+    //     dateFormat: "yy-mm-dd"
+    // });
+    // // Date Getter
+    // let dateFormat = $(".selector").datepicker("option", "dateFormat");
+    // let date = dateFormat;
+    // console.log(date);
     // This file just does a GET request to figure out which user is logged in
     // and updates the HTML on the page
-    $.get("/api/user_data").then(function(data) {
+    $.get("/api/user_data").then(function (data) {
         $(".member-name").text(data.email);
     });
     // GET request for current comic - http://xkcd.com/info.0.json
@@ -23,7 +32,7 @@ $(document).ready(function() {
     $.ajax({
         method: "GET",
         url: "http://xkcd.com/info.0.json"
-    }).then(function(response) {
+    }).then(function (response) {
         $(".comic").attr("src", response.json.img)
         console.log(response.json.img)
         // Creating object to send to server.
@@ -33,11 +42,12 @@ $(document).ready(function() {
             postNum: response.num
         }
         $.post("/api/comic", comic)
-        .then(function(data) {
-          console.log("Comic added successfully", data);
-        });
+            .then(function (data) {
+                console.log("Comic added successfully", data);
+            });
     })
-    $.get("/api/tasks/" + date).then(function(data) {
+    $.get("/api/tasks/" + date).then(function (data) {
+        console.log(date);
         let eventTime = data.taskTime
         let event = data.taskName
         let id = data.id
@@ -45,12 +55,12 @@ $(document).ready(function() {
             let addEvent = $("<li>").text("Time: " + eventTime + "Event: " + event).addClass("list-group-item");
             $(".list-group").append(addEvent);
             addEvent.append("<button>").text("DELETE").addClass("delete").attr("data-index", id);
-        } 
-    }) 
+        }
+    })
 
-    $(function() {
+    $(function () {
         $("#datepicker").datepicker();
-        let selectDate = $(".selector").datepicker("getDate");
+        let date = $(".selector").datepicker("getDate");
 
         let comicNum = Math.floor(Math.random() * 2380);
 
@@ -59,7 +69,7 @@ $(document).ready(function() {
         $.ajax({
             method: "GET",
             url: "http://xkcd.com/" + comicNum + "/info.0.json"
-        }).then(function(response) {
+        }).then(function (response) {
             $(".comic").attr("src", response.json.img)
             // Creating object to send to server.
             let comic = {
@@ -68,12 +78,12 @@ $(document).ready(function() {
                 postNum: response.num
             }
             $.post("/api/comic", comic)
-            .then(function(data) {
-              console.log("Comic added successfully", data);
-            });
+                .then(function (data) {
+                    console.log("Comic added successfully", data);
+                });
         })
         // add functionality with date selected
-        $.get("/api/tasks").then(function(data) {
+        $.get("/api/tasks").then(function (data) {
             let eventTime = data.taskTime
             let event = data.taskName
             let id = data.id
@@ -81,10 +91,10 @@ $(document).ready(function() {
                 let addEvent = $("<li>").text("Time: " + eventTime + "Event: " + event).addClass("list-group-item");
                 $(".list-group").append(addEvent);
                 addEvent.append("<button>").text("DELETE").addClass("delete").attr("data-index", id);
-            }; 
+            };
         });
     });
-    eventForm.on("submit", function(event) {
+    eventForm.on("submit", function (event) {
         event.preventDefault();
         let newEvent = {
             time: event_time.val().trim(),
@@ -95,24 +105,25 @@ $(document).ready(function() {
         event_time.val("");
     })
 
-    function addNewEvent (time, event) {
+    function addNewEvent(time, event) {
+        console.log(date);
         $.post("/api/newEvent", {
             taskTime: time,
             taskName: event
-        }).then(function(data) {
+        }).then(function (data) {
             console.log("Event Added Successfully: " + data.taskTime + data.taskName)
             location.reload();
         })
     }
 
-    $(".delete").on("click", function(event) {
+    $(".delete").on("click", function (event) {
         event.preventDefault();
 
         $.ajax("/api/task/", {
-            id: $(this.data-index),
+            id: $(this.data - index),
             type: "DELETE"
         }).then(
-            function() {
+            function () {
                 console.log("Event deleted " + id)
                 location.reload();
             }
