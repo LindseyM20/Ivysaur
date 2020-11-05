@@ -38,7 +38,7 @@ $(document).ready(function() {
     }
   
     function handleLoginErr(err) {
-      $("#alert .msg").text(err.responseJSON);
+      $("#alert .msg").text(JSON.stringify(err.responseJSON));
       $("#alert").fadeIn(500);
     }
   });

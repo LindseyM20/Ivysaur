@@ -91,7 +91,7 @@ $(document).ready(function() {
         });
     }
 
-    $(".datepick").on("click", function(event) {
+    $("#datepick").on("change", function(event) {
         event.preventDefault();
         let newDate = $("#datepicker").val();
         currentDate.empty();
