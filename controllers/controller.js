@@ -54,21 +54,23 @@ module.exports = function(app) {
   });
 
   // Gets all dates and tasks based on the user's email.
-  app.get("/api/tasks", function(req, res) {
+  app.get("/api/tasks/:date", function(req, res) {
     db.User.findAll({
       where: {
-        email: req.user.email
+        email: req.user.email,
+        date: req.params.date
       },
       include: [db.Calendar, db.Task]
     }).then(function(data) {
       res.json(data);
     });
   });
-  // // Route for logging user out
-  // app.get("/logout", function(req, res) {
-  //   req.logout();
-  //   res.redirect("/");
-  // });
+
+  // Route for logging user out
+  app.get("/logout", function(req, res) {
+    req.logout();
+    res.redirect("/");
+  });
 
   // // Route for getting some data about our user to be used client side
  app.get("/api/user_data", function(req, res) {
