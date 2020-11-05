@@ -37,9 +37,9 @@
             <h3 class="date"></h3>
             <img class="comic">
         </div>
-        <div class="col">
+        <div class="col-md-6 col-md-offset-3">
             <p>Select another date: <input type="text" id="datepicker"></p>
-            <button class="datepick" type="submit">Submit</button>
+            <!-- <button class="datepick" type="submit">Submit</button> -->
             <div class="card" style="width: 24rem;">
                 <div class="card-body">
                     <h5 class="card-title">Add Event</h5>
@@ -66,6 +66,7 @@
     $(function() {
     $("#datepicker").datepicker({
         onSelect: function(){
+            $(this).change();
             selectDate = $(this).val();
         }
     });
