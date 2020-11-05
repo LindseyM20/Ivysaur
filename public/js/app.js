@@ -91,7 +91,7 @@ $(document).ready(function() {
         });
     }
 
-    $("#datepick").on("change", function(event) {
+    $("#datepicker").on("change", function(event) {
         event.preventDefault();
         let newDate = $("#datepicker").val();
         currentDate.empty();
@@ -132,7 +132,7 @@ $(document).ready(function() {
         });
     };
 
-    $(".delete").on("click", function(event) {
+    $(".delButton").on("click", function(event) {
         event.preventDefault();
 
         $.ajax("/api/task/", {
