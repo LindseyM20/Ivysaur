@@ -34,6 +34,7 @@ $(document).ready(function() {
           // If there's an error, log the error
         })
         .catch(function(err) {
+          window.location.replace("/newuser")
           console.log(err);
         });
     }
