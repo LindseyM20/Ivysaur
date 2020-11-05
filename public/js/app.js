@@ -89,6 +89,45 @@ $(document).ready(function() {
             console.log("Comic added successfully", data);
         });
     }
+
+    $(".datepick").on("click", function(event) {
+        event.preventDefault();
+        let newDate = $("#datepicker").val();
+        console.log(newDate);
+
+        getEvents(userId, newDate);
+
+        $.get("/api/saved_comic", newDate).then(function(data) {
+            if (newDate == data.date) {
+                $(".comic").removeAttr("src").attr("src", data.imgURL);
+            }
+            else {
+                getRando(newDate);
+            }
+        })
+        
+    })
+
+    function getRando(diffDate) {
+        let comicNum = Math.floor(Math.random() * 2380);
+
+        $.ajax({
+            method: "GET",
+            url: "https://cors-anywhere.herokuapp.com/https://xkcd.com/" + comicNum + "/info.0.json"
+        }).then(function(response) {
+            $(".comic").removeAttr("src").attr("src", response.img);
+
+            let rando = {
+                date: diffDate,
+                comicName: response.title,
+                imgURL: response.img,
+                postNum: response.num
+            }
+
+            saveComic(rando);
+        });
+    };
+
     $(".delete").on("click", function(event) {
         event.preventDefault();
 
