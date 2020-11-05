@@ -8,6 +8,10 @@ module.exports = function (sequelize, DataTypes) {
     taskName: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    eventDate: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
 
     // taskTime: {
@@ -20,7 +24,7 @@ module.exports = function (sequelize, DataTypes) {
   Task.associate = function (models) {
     // We're saying that a Task should belong to a User
     // A Task can't be created without an User due to the foreign key constraint
-    Task.belongsTo(models.Calendar, {
+    Task.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
       }

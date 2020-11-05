@@ -33,6 +33,9 @@ module.exports = function(sequelize, DataTypes) {
     User.hasMany(models.Calendar, {
       onDelete: "cascade"
     });
+    User.hasMany(models.Task, {
+        onDelete: "cascade"
+    })
   };
   return User;
 };
