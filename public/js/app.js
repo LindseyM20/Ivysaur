@@ -93,6 +93,8 @@ $(document).ready(function() {
     $(".datepick").on("click", function(event) {
         event.preventDefault();
         let newDate = $("#datepicker").val();
+        currentDate.empty();
+        $(".date").text(newDate);
         console.log(newDate);
 
         getEvents(userId, newDate);
