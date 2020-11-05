@@ -1,110 +1,94 @@
-// event listeners for user.html
 $(document).ready(function() {
     let eventForm = $("form.addEvent");
     let event_input = $("input#eventInput");
     let event_time = $("input#eventTime");
+    let addedEvents = $(".list-group")
+    let currentDate = $(".date").html(moment().format("L"));
+    let userId;
 
-    $(".date").html(moment().format("dddd, MMMM Do YYYY"));
-
-    $(".selector").datepicker({
-        currentText: "Now"
-    })
-    
-    let date = $(".selector").datepicker("option", "currentText", "yy-mm-dd")
-    // This file just does a GET request to figure out which user is logged in
-    // and updates the HTML on the page
     $.get("/api/user_data").then(function(data) {
         $(".member-name").text(data.email);
+        getEvents(data.id, currentDate[0].innerHTML);
+        userId = data.id;
     });
-    // GET request for current comic - http://xkcd.com/info.0.json
+
+    function getEvents (userId, selectedDate) {
+        console.log(selectedDate);
+        $.get("/api/tasks/" + userId, function(data) {
+            addedEvents.empty();
+            console.log(data);
+            console.log(data.taskTime);
+            console.log(data.taskName);
+            for (i = 0; i < data.length; i++) {
+                if (selectedDate == data[i].eventDate) {
+                    let addEvent = $("<li>").text("Time: " + data[i].taskTime + " Event: " + data[i].taskName);
+                    let delButton = $("<button>").text("Delete").attr("data-index", data[i].id).addClass("delButton");
+                    addEvent.append(delButton);
+                    addedEvents.append(addEvent);
+                }
+            }
+        })
+    }
+
+    eventForm.on("submit", function(event) {
+        event.preventDefault();
+        let selectDate = $("#datepicker").val();
+        if (selectDate) {
+            console.log(selectDate);
+            let newEvent = {
+                time: event_time.val().trim(),
+                event: event_input.val().trim(),
+                eventDate: selectDate,
+                UserId: userId
+            };
+            addNewEvent(newEvent.time, newEvent.event, newEvent.eventDate, newEvent.UserId);
+            event_input.val("");
+            event_time.val("");
+        }
+        else {
+            $(".error").removeClass("d-none").addClass("d-block").text("Please select a date for the event");
+        };
+        
+    });
+
+    function addNewEvent (time, event, eventDate, userId) {
+        $.post("/api/newEvent", {
+            taskTime: time,
+            taskName: event,
+            eventDate: eventDate,
+            UserId: userId
+        }).then(function(data) {
+            console.log("Event Added Successfully: " + data.taskTime + data.taskName)
+            getEvents(userId, data.eventDate);
+        })
+    }
+    //add click event to view events on different dates without having to add a new event
     // $.get("/api/current_comic").then(function(res) {
     //     $(".comic").attr("src", res.json.img)
     // });
     $.ajax({
         method: "GET",
-        url: "http://xkcd.com/info.0.json"
+        url: "https://cors-anywhere.herokuapp.com/https://xkcd.com/info.0.json"
     }).then(function(response) {
-        $(".comic").attr("src", response.json.img)
-        console.log(response.json.img)
+        console.log(response);
+        $(".comic").attr("src", response.img)
+        console.log(response.img)
         // Creating object to send to server.
         let comic = {
+            date: currentDate[0].innerHTML,
             comicName: response.title,
             imgURL: response.img,
             postNum: response.num
         }
+        saveComic(comic)
+    })
+
+    function saveComic(comic) {
         $.post("/api/comic", comic)
         .then(function(data) {
-          console.log("Comic added successfully", data);
+            console.log("Comic added successfully", data);
         });
-    })
-    $.get("/api/tasks/" + date).then(function(data) {
-        let eventTime = data.taskTime
-        let event = data.taskName
-        let id = data.id
-        for (i = 0; i < event.length; i++) {
-            let addEvent = $("<li>").text("Time: " + eventTime + "Event: " + event).addClass("list-group-item");
-            $(".list-group").append(addEvent);
-            addEvent.append("<button>").text("DELETE").addClass("delete").attr("data-index", id);
-        } 
-    }) 
-
-    $(function() {
-        $("#datepicker").datepicker();
-        let selectDate = $(".selector").datepicker("getDate");
-
-        let comicNum = Math.floor(Math.random() * 2380);
-
-        $(".comic").attr("src", "");
-
-        $.ajax({
-            method: "GET",
-            url: "http://xkcd.com/" + comicNum + "/info.0.json"
-        }).then(function(response) {
-            $(".comic").attr("src", response.json.img)
-            // Creating object to send to server.
-            let comic = {
-                comicName: response.title,
-                imgURL: response.img,
-                postNum: response.num
-            }
-            $.post("/api/comic", comic)
-            .then(function(data) {
-              console.log("Comic added successfully", data);
-            });
-        })
-        // add functionality with date selected
-        $.get("/api/tasks").then(function(data) {
-            let eventTime = data.taskTime
-            let event = data.taskName
-            let id = data.id
-            for (i = 0; i < event.length; i++) {
-                let addEvent = $("<li>").text("Time: " + eventTime + "Event: " + event).addClass("list-group-item");
-                $(".list-group").append(addEvent);
-                addEvent.append("<button>").text("DELETE").addClass("delete").attr("data-index", id);
-            }; 
-        });
-    });
-    eventForm.on("submit", function(event) {
-        event.preventDefault();
-        let newEvent = {
-            time: event_time.val().trim(),
-            event: event_input.val().trim()
-        };
-        addNewEvent(newEvent.time, newEvent.event);
-        event_input.val("");
-        event_time.val("");
-    })
-
-    function addNewEvent (time, event) {
-        $.post("/api/newEvent", {
-            taskTime: time,
-            taskName: event
-        }).then(function(data) {
-            console.log("Event Added Successfully: " + data.taskTime + data.taskName)
-            location.reload();
-        })
     }
-
     $(".delete").on("click", function(event) {
         event.preventDefault();
 

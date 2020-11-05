@@ -29,49 +29,7 @@ module.exports = function(app) {
       });
   });
 
-  app.post("/api/comic", function(req, res) {
-    db.Calendar.create(req)
-  })
-  // app.get("/api/current_comic", function(req, res) {
-
-  // })
-
-  app.post("/api/newEvent", function(req, res) {
-    db.Task.create(req.body).then(function(data) {
-      res.json(data);
-    });
-  })
-
-  // Deletes task when delete button is pressed.
-  app.delete("/api/task/", function(req, res) {
-    db.task.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(function(data) {
-      res.json(data);
-    });
-  });
-
-  // Gets all dates and tasks based on the user's email.
-  app.get("/api/tasks", function(req, res) {
-    db.User.findAll({
-      where: {
-        email: req.user.email
-      },
-      include: [db.Calendar, db.Task]
-    }).then(function(data) {
-      res.json(data);
-    });
-  });
-  // // Route for logging user out
-  // app.get("/logout", function(req, res) {
-  //   req.logout();
-  //   res.redirect("/");
-  // });
-
-  // // Route for getting some data about our user to be used client side
- app.get("/api/user_data", function(req, res) {
+  app.get("/api/user_data", function(req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
@@ -84,4 +42,51 @@ module.exports = function(app) {
       });
     }
   });
+
+  app.get("/api/tasks/:id", function(req, res) {
+    db.Task.findAll({
+      where: {
+        UserId: req.user.id
+      }
+    }).then(function(data) {
+      res.json(data);
+    });
+  });
+
+ app.post("/api/newEvent", function(req, res) {
+    db.Task.create(req.body).then(function(data) {
+      res.json(data);
+    });
+  })
+
+  app.post("/api/comic", function(req, res) {
+    console.log(req.body);
+    db.Calendar.create(req.body).then(function(data) {
+        res.json(data);
+    });
+  })
+  // app.get("/api/current_comic", function(req, res) {
+
+  // })
+  // Deletes task when delete button is pressed.
+  app.delete("/api/task/", function(req, res) {
+    db.task.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(data) {
+      res.json(data);
+    });
+  });
+
+  // Gets all dates and tasks based on the user's email.
+
+  // // Route for logging user out
+  // app.get("/logout", function(req, res) {
+  //   req.logout();
+  //   res.redirect("/");
+  // });
+
+  // // Route for getting some data about our user to be used client side
+
 };
