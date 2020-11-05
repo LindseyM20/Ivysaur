@@ -14,11 +14,6 @@
     <link href="stylesheets/style.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-        $(function () {
-            $("#datepicker").datepicker();
-        });
-    </script>
 </head>
 
 <body>
@@ -37,39 +32,37 @@
             </ul>
         </div>
         </div>
-    </nav>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <h3 class="date"></h3>
-                <img class="comic">
-            </div>
-            <div class="col">
-                <p>Select another date: <input type="text" id="datepicker"></p>
-                <div class="card" style="width: 24rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Add Event</h5>
-                        <form class="addEvent form-group mb-3">
-                            <input type="text" class="form-control" id="eventInput" placeholder="Create New Event"
-                                aria-label="New Event Field" aria-describedby="basic-addon2">
-                            <input type="text" class="form-control" id="eventTime" placeholder="Time of Event"
-                                aria-label="New Event Field" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="submit">Save</button>
-                            </div>
-                        </form>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <!-- <li class="list-group-item">placeholder</li> -->
-                    </ul>
+        <div class="col">
+            <p>Select another date: <input type="text" id="datepicker"></p>
+            <div class="card" style="width: 24rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Add Event</h5>
+                    <form class="addEvent form-group mb-3">
+                        <input type="text" class="form-control" id="eventInput" placeholder="Create New Event" aria-label="New Event Field" aria-describedby="basic-addon2">
+                        <input type="text" class="form-control" id="eventTime" placeholder="Time of Event"  aria-label="New Event Field" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Save</button>
+                        </div>
+                        <div class="d-none error"></div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function() {
+    $("#datepicker").datepicker({
+        onSelect: function(){
+            selectDate = $(this).val();
+        }
+    });
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
 
 </body>
 
