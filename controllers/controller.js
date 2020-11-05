@@ -29,19 +29,45 @@ module.exports = function(app) {
       });
   });
 
-  app.post("/api/comic", function(req, res) {
-    db.Calendar.create(req)
-  })
-  // app.get("/api/current_comic", function(req, res) {
+  app.get("/api/user_data", function(req, res) {
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      // Otherwise send back the user's email and id
+      // Sending back a password, even a hashed password, isn't a good idea
+      res.json({
+        email: req.user.email,
+        id: req.user.id
+      });
+    }
+  });
 
-  // })
+  app.get("/api/tasks/:id", function(req, res) {
+    db.Task.findAll({
+      where: {
+        UserId: req.user.id
+      }
+    }).then(function(data) {
+      res.json(data);
+    });
+  });
 
-  app.post("/api/newEvent", function(req, res) {
+ app.post("/api/newEvent", function(req, res) {
     db.Task.create(req.body).then(function(data) {
       res.json(data);
     });
   })
 
+  app.post("/api/comic", function(req, res) {
+    console.log(req.body);
+    db.Calendar.create(req.body).then(function(data) {
+        res.json(data);
+    });
+  })
+  // app.get("/api/current_comic", function(req, res) {
+
+  // })
   // Deletes task when delete button is pressed.
   app.delete("/api/task/", function(req, res) {
     db.task.destroy({
@@ -73,17 +99,5 @@ module.exports = function(app) {
   });
 
   // // Route for getting some data about our user to be used client side
- app.get("/api/user_data", function(req, res) {
-    if (!req.user) {
-      // The user is not logged in, send back an empty object
-      res.json({});
-    } else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
-      res.json({
-        email: req.user.email,
-        id: req.user.id
-      });
-    }
-  });
+
 };
