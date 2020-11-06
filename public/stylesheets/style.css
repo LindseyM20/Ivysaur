@@ -1,10 +1,18 @@
+* {
+  font-family: 'Dosis', sans-serif;
+}
+
 form.signup,
 form.login {
   margin-top: 50px;
 }
 
 body {
-  background-color: rgb(239, 246, 224);
+  background: linear-gradient(180deg, rgb(89, 131, 146) 50%, rgb(18, 69, 89));
+}
+
+#i4c-dialogs-container {
+  background-color: rgb(18, 69, 89);
 }
 
 .navbar {
@@ -27,6 +35,30 @@ body {
   color: rgb(239, 246, 224); /*Sets the text hover color on navbar*/
 }
 
+label {
+  color: rgb(239, 246, 224);
+}
+
+.signup {
+  color: rgb(239, 246, 224);
+}
+
+a {
+  color: rgb(174, 195, 176);
+}
+
+a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: rgb(239, 246, 224); /*Sets the text hover color on navbar*/
+}
+
+.container-fluid {
+  width: 100%;
+}
+
+.col-sm-8 {
+  padding-left: 0;
+}
+
 p, h3, h5, .date {
   color: rgb(18, 69, 89);
   font-weight: 700;
@@ -34,17 +66,32 @@ p, h3, h5, .date {
 
 .welcome {
   font-weight: 400;
-  color: rgb(89, 131, 146);
+  color: rgb(239, 246, 224);
 }
 
 .comic {
   border-style: solid;
   border-color: rgb(18, 69, 89);
-  border-width: 8px;
+  border-width: 10px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 #datepicker {
+  margin-top: 16px;
+  text-align: center;
+}
+
+#dateSelect {
   margin-top: 10px;
+  font-size: large;
+  text-align: center;
+}
+
+.card {
+  width: 110%;
+  margin-top: 30px;
+  background-color: rgba(239, 246, 224, 0.733);
 }
 
 .card-title {
@@ -52,25 +99,30 @@ p, h3, h5, .date {
 }
 
 .card-body {
-  width: 150%;
   border-style: solid;
   border-color: rgb(18, 69, 89);
-  border-width: 8px;
+  border-width: 10px;
   margin-bottom: 20%;
+}
+
+form {
+  padding: 10px;
 }
 
 ul {
   list-style: none;
+  margin: 10px, 0px, 0px, 5px;
 }
 
-.taskTime {
-  font-weight: 1000;
-  color: red;
+.list-group {
+  font-size: large;
+  margin: 10px, 0px, 0px, 5px;
+  padding: 10px;
 }
 
 .btn {
   color: rgb(18, 69, 89);
-  background-color:  rgb(174, 195, 176);
+  background-color:  rgb(239, 246, 224);
 }
 
 .delButton {
