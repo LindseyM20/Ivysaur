@@ -9,6 +9,7 @@ form.login {
 
 body {
   background: linear-gradient(180deg, rgb(89, 131, 146) 50%, rgb(18, 69, 89));
+  padding-bottom: 25%;
 }
 
 #i4c-dialogs-container {
@@ -127,4 +128,13 @@ ul {
 
 .delButton {
   float: right;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: rgb(239, 246, 224);
 }
