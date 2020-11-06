@@ -46,7 +46,7 @@ module.exports = function (app) {
   app.get("/api/tasks/:id", function (req, res) {
     db.Task.findAll({
       where: {
-        UserId: req.body.id
+        UserId: req.user.id
       }
     }).then(function (data) {
       res.json(data);
