@@ -27,13 +27,18 @@ body {
   color: rgb(239, 246, 224); /*Sets the text hover color on navbar*/
 }
 
-h4 {
+/* h4 {
   color: rgb(18, 69, 89);
-}
+} */
 
-p, h5, .date {
+p, h3, h5, .date {
   color: rgb(18, 69, 89);
   font-weight: 700;
+}
+
+.welcome {
+  font-weight: 400;
+  color: rgb(89, 131, 146);
 }
 
 .comic {
@@ -51,12 +56,27 @@ p, h5, .date {
 }
 
 .card-body {
+  width: 150%;
   border-style: solid;
   border-color: rgb(18, 69, 89);
   border-width: 8px;
+  margin-bottom: 20%;
+}
+
+ul {
+  list-style: none;
+}
+
+.taskTime {
+  font-weight: 1000;
+  color: red;
 }
 
 .btn {
   color: rgb(18, 69, 89);
   background-color:  rgb(174, 195, 176);
+}
+
+.delButton {
+  float: right;
 }
