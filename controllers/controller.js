@@ -81,7 +81,7 @@ module.exports = function (app) {
   // })
   // Deletes task when delete button is pressed.
   app.delete("/api/task/", function (req, res) {
-    db.task.destroy({
+    db.Task.destroy({
       where: {
         id: req.params.id
       }
@@ -101,21 +101,20 @@ module.exports = function (app) {
   // // Route for getting some data about our user to be used client side
   app.get("/api/saved_comic/:date", function (req, res) {
     console.log(req.params);
-    const dateParts = req.params.date.split("/");
     db.Calendar.findAll({
       where: {
-        date: new Date(parseInt(dateParts[2]), parseInt(dateParts[0])-1, parseInt(dateParts[1]))
+        date: req.params.date
       },
       order: 
         [['id', 'DESC']]
-      
-    }).then(function (data) {
+    }).then(function(data) {
       console.log(data)
       if (data.length > 0){
       res.json(data[0]);
-      }else {
-        res.json({date:""})
+      }
+      else {
+        res.json({date: ""})
       }
     });
-  })
+  });
 };

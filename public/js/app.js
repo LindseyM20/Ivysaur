@@ -3,7 +3,7 @@ $(document).ready(function() {
     let event_input = $("input#eventInput");
     let event_time = $("input#eventTime");
     let addedEvents = $(".list-group")
-    let currentDate = $(".date").html(moment().format("L"));
+    let currentDate = $(".date").html(moment().format("YYYY-MM-DD"));
     let userId;
 
     $.get("/api/user_data").then(function(data) {
@@ -100,9 +100,10 @@ $(document).ready(function() {
 
         getEvents(userId, newDate);
 
-        $.get("/api/saved_comic/" + newDate.replace(/\//g, "%2F")).then(function(data) {
+        $.get("/api/saved_comic/" + newDate).then(function(data) {
             console.log("got this", data)
-        if (newDate == data.date) {
+
+            if (newDate == data.date) {
                 $(".comic").removeAttr("src").attr("src", data.imgURL);
             }
             else {
