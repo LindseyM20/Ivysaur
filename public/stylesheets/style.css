@@ -27,10 +27,6 @@ body {
   color: rgb(239, 246, 224); /*Sets the text hover color on navbar*/
 }
 
-/* h4 {
-  color: rgb(18, 69, 89);
-} */
-
 p, h3, h5, .date {
   color: rgb(18, 69, 89);
   font-weight: 700;
