@@ -9,15 +9,27 @@ body {
 
 .navbar {
   background-color: rgb(1, 22, 30);
+  border-color: rgb(1, 22, 30);
 }
 
 .navbarText {
   color: rgb(174, 195, 176);
+  margin: 0px, 0px, 4px, 4px;
 }
 
-/* .navWelcome, .navLogout {
-  float: right;
-} */
+.navbar-default .navbar-nav > li > a {
+  color: rgb(174, 195, 176);
+  font-size: large;
+  margin-top: 14px;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: rgb(239, 246, 224); /*Sets the text hover color on navbar*/
+}
+
+h4 {
+  color: rgb(18, 69, 89);
+}
 
 p, h5, .date {
   color: rgb(18, 69, 89);
@@ -28,6 +40,10 @@ p, h5, .date {
   border-style: solid;
   border-color: rgb(18, 69, 89);
   border-width: 8px;
+}
+
+#datepicker {
+  margin-top: 10px;
 }
 
 .card-title {
