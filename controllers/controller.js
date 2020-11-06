@@ -80,12 +80,12 @@ module.exports = function (app) {
 
   // })
   // Deletes task when delete button is pressed.
-  app.delete("/api/task/", function (req, res) {
+  app.delete("/api/task/:id", function (req, res) {
     db.Task.destroy({
       where: {
         id: req.params.id
       }
-    }).then(function (data) {
+    }).then(function(data) {
       res.json(data);
     });
   });
