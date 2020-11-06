@@ -84,7 +84,7 @@ module.exports = function (app) {
       where: {
         id: req.body.id
       }
-    }).then(function (data) {
+    }).then(function(data) {
       res.json(data);
     });
   });

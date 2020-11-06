@@ -21,7 +21,7 @@ $(document).ready(function() {
             console.log(data.taskName);
             for (i = 0; i < data.length; i++) {
                 if (selectedDate == data[i].eventDate) {
-                    let addEvent = $("<li>").text("Time: " + data[i].taskTime + " Event: " + data[i].taskName);
+                    let addEvent = $("<li>").text("Time: " + data[i].taskTime + " Event: " + data[i].taskName).addClass("list-group-flush", "list-group");
                     let delButton = $("<button>").text("Delete").attr("dataIndex", data[i].id).addClass("delButton");
                     addEvent.append(delButton);
                     addedEvents.append(addEvent);
