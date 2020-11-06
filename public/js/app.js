@@ -22,7 +22,7 @@ $(document).ready(function() {
             for (i = 0; i < data.length; i++) {
                 if (selectedDate == data[i].eventDate) {
                     let addEvent = $("<li>").text(data[i].taskTime + ": " + data[i].taskName).addClass("list-group-flush list-group");
-                    let delButton = $("<button>").text("Delete").attr("data-index", data[i].id).addClass("btn delButton");
+                    let delButton = $("<button>").text("Delete").attr("dataIndex", data[i].id).addClass("btn delButton");
                     addEvent.append(delButton);
                     addedEvents.append(addEvent);
                 };
