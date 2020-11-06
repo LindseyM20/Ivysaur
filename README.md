@@ -4,6 +4,7 @@
   - [Motivation for Creation](#Motivation_for_Creation)
   - [Usage](#Usage)
   - [How it Works](#How_it_Works)
+  - [Technologies](#Technologies)
   - [Future Upgrades](#Future_Upgrades)
   - [Acknowledgements](#Acknowledgements)
   - [Contributing](#Contributing)
@@ -24,7 +25,7 @@ Need more xkcd in your life? We're here to help. How about some comics in your c
   ## Usage
   <a href="https://quiet-ocean-60031.herokuapp.com/newuser" target="blank">Sign Up</a><br>
   <a href="https://quiet-ocean-60031.herokuapp.com/" target="blank">Login</a><br>
-  
+
   <img src="https://media.giphy.com/media/YbjNk8ZiEJQ2lwbS4H/giphy.gif"/>
 
   ## How_it_Works
@@ -56,7 +57,7 @@ Need more xkcd in your life? We're here to help. How about some comics in your c
  </ul>
 
  ## Acknowledgements
- We literally couldn't have done this without all the [technologies](technologies) we used.<br><br> We'd also like to give a special shoutout to our amazing instructional crew, <a href="https://xkcd.com/" target="blank">xkcd</a>, <a href="https://api.jqueryui.com/" target="blank">jQuery Datepicker</a>, and <a href="https://google.com" target="blank">Google</a>.  
+ We literally couldn't have done this without all the technologies we used.<br><br> We'd also like to give a special shoutout to our amazing instructional crew, <a href="https://xkcd.com/" target="blank">xkcd</a>, <a href="https://api.jqueryui.com/" target="blank">jQuery Datepicker</a>, and <a href="https://google.com" target="blank">Google</a>.  
 
 ## Contributing
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are greatly appreciated.
