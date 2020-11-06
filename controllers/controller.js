@@ -76,14 +76,13 @@ module.exports = function (app) {
       res.json(data);
     });
   })
-  // app.get("/api/current_comic", function(req, res) {
-
-  // })
+  
   // Deletes task when delete button is pressed.
-  app.delete("/api/task/:id", function (req, res) {
+  app.post("/api/task", function (req, res) {
+    console.log(req.body.id);
     db.Task.destroy({
       where: {
-        id: req.params.id
+        id: req.body.id
       }
     }).then(function(data) {
       res.json(data);
