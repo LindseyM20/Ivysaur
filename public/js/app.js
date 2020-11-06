@@ -21,13 +21,19 @@ $(document).ready(function() {
             console.log(data.taskName);
             for (i = 0; i < data.length; i++) {
                 if (selectedDate == data[i].eventDate) {
+<<<<<<< HEAD
                     let addEvent = $("<li>").text(data[i].taskTime + ": " + data[i].taskName).addClass("list-group-flush list-group");
                     $(data[i].taskTime).addClass("taskTime");
                     let delButton = $("<button>").text("Delete").attr("data-index", data[i].id).addClass("btn delButton");
+=======
+                    let addEvent = $("<li>").text("Time: " + data[i].taskTime + " Event: " + data[i].taskName).addClass("list-group-flush", "list-group");
+                    let delButton = $("<button>").text("Delete").attr("dataIndex", data[i].id).addClass("delButton");
+>>>>>>> d8a338fb75c02623012b1bafd5feba42d1973824
                     addEvent.append(delButton);
                     addedEvents.append(addEvent);
                 };
             };
+        refreshDelButtonListener();
         });
     };
 
@@ -135,16 +141,18 @@ $(document).ready(function() {
         });
     };
 
-    $(".delButton").on("click", function(event) {
-        event.preventDefault();
-        let reloadDate = $("#datepicker").val();
-
-        $.ajax({
-            method: "DELETE",
-            url: "/api/task/" + $(this.data-index)
-        }).then(function(res) {
-            console.log("Event deleted " + res.id)
-            getEvents(userId, reloadDate);
+    function refreshDelButtonListener() {
+        $(".delButton").on("click", function(event) {
+            event.preventDefault();
+            console.log($(this).attr("dataIndex"));
+                $.post("/api/task", {
+                    id: $(this).attr("dataIndex")
+            }).then(
+                function(data) {
+                    getEvents(userId, $("#datepicker").val());
+                }
+            );
         });
-    });
+    }
+    
 });
