@@ -80,12 +80,12 @@ module.exports = function (app) {
 
   // })
   // Deletes task when delete button is pressed.
-  app.delete("/api/task/", function (req, res) {
-    db.task.destroy({
+  app.delete("/api/task/:id", function (req, res) {
+    db.Task.destroy({
       where: {
         id: req.params.id
       }
-    }).then(function (data) {
+    }).then(function(data) {
       res.json(data);
     });
   });
@@ -99,5 +99,22 @@ module.exports = function (app) {
   });
 
   // // Route for getting some data about our user to be used client side
-
+  app.get("/api/saved_comic/:date", function (req, res) {
+    console.log(req.params);
+    db.Calendar.findAll({
+      where: {
+        date: req.params.date
+      },
+      order: 
+        [['id', 'DESC']]
+    }).then(function(data) {
+      console.log(data)
+      if (data.length > 0){
+      res.json(data[0]);
+      }
+      else {
+        res.json({date: ""})
+      }
+    });
+  });
 };

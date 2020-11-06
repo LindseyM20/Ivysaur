@@ -3,7 +3,7 @@ $(document).ready(function() {
     let event_input = $("input#eventInput");
     let event_time = $("input#eventTime");
     let addedEvents = $(".list-group")
-    let currentDate = $(".date").html(moment().format("L"));
+    let currentDate = $(".date").html(moment().format("YYYY-MM-DD"));
     let userId;
 
     $.get("/api/user_data").then(function(data) {
@@ -21,7 +21,7 @@ $(document).ready(function() {
             console.log(data.taskName);
             for (i = 0; i < data.length; i++) {
                 if (selectedDate == data[i].eventDate) {
-                    let addEvent = $("<li>").text("Time: " + data[i].taskTime + " Event: " + data[i].taskName);
+                    let addEvent = $("<li>").text("Time: " + data[i].taskTime + " Event: " + data[i].taskName).addClass("list-group-flush", "list-group");
                     let delButton = $("<button>").text("Delete").attr("data-index", data[i].id).addClass("delButton");
                     addEvent.append(delButton);
                     addedEvents.append(addEvent);
@@ -100,7 +100,9 @@ $(document).ready(function() {
 
         getEvents(userId, newDate);
 
-        $.get("/api/saved_comic", newDate).then(function(data) {
+        $.get("/api/saved_comic/" + newDate).then(function(data) {
+            console.log("got this", data)
+
             if (newDate == data.date) {
                 $(".comic").removeAttr("src").attr("src", data.imgURL);
             }
@@ -134,15 +136,14 @@ $(document).ready(function() {
 
     $(".delButton").on("click", function(event) {
         event.preventDefault();
+        let reloadDate = $("#datepicker").val();
 
-        $.ajax("/api/task/", {
-            id: $(this.data-index),
-            type: "DELETE"
-        }).then(
-            function() {
-                console.log("Event deleted " + id)
-                location.reload();
-            }
-        );
+        $.ajax({
+            method: "DELETE",
+            url: "/api/task/" + $(this.data-index)
+        }).then(function(res) {
+            console.log("Event deleted " + res.id)
+            getEvents(userId, reloadDate);
+        });
     });
 });
