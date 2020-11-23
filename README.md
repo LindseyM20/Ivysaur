@@ -1,4 +1,5 @@
 # xkcDaily
+
   ## Table of contents
   - [Description](#Description)
   - [Motivation for Creation](#Motivation_for_Creation)
@@ -23,8 +24,8 @@ Need more xkcd in your life? We're here to help. How about some comics in your c
   As an xkcd enthusiast I want my comics with my calendar so that I have more time for things in my calendar. 
 
   ## Usage
-  <a href="https://quiet-ocean-60031.herokuapp.com/newuser" target="blank">Sign Up</a><br>
-  <a href="https://quiet-ocean-60031.herokuapp.com/" target="blank">Login</a><br>
+  <a href="https://xkcdaily.herokuapp.com/newuser" target="blank">Sign Up</a><br>
+  <a href="https://xkcdaily.herokuapp.com" target="blank">Login</a><br>
 
   <img src="https://media.giphy.com/media/YbjNk8ZiEJQ2lwbS4H/giphy.gif"/>
 
@@ -45,7 +46,7 @@ Need more xkcd in your life? We're here to help. How about some comics in your c
   <li>GitHub</li>
   </ul>
 
-  ## Future_Upgrades
+  ## Future Upgrades
   You may be thinking, "how could this possibly get any better?"
 
   Well what if you could:
