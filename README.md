@@ -19,7 +19,7 @@ Need more xkcd in your life? We're here to help. How about some comics in your c
     <li>You're welcome</li>
 </ul>
 
-  ## Motivation_for_Creation
+  ## Motivation for Creation
   As an xkcd enthusiast I want my comics with my calendar so that I have more time for things in my calendar. 
 
   ## Usage
@@ -28,7 +28,7 @@ Need more xkcd in your life? We're here to help. How about some comics in your c
 
   <img src="https://media.giphy.com/media/YbjNk8ZiEJQ2lwbS4H/giphy.gif"/>
 
-  ## How_it_Works
+  ## How it Works
   <img src="public\images\xkcDaily_structure.png">
     
   ## Technologies
@@ -60,7 +60,7 @@ Need more xkcd in your life? We're here to help. How about some comics in your c
  We literally couldn't have done this without all the technologies we used.<br><br> We'd also like to give a special shoutout to our amazing instructional crew, <a href="https://xkcd.com/" target="blank">xkcd</a>, <a href="https://api.jqueryui.com/" target="blank">jQuery Datepicker</a>, and <a href="https://google.com" target="blank">Google</a>.  
 
 ## Contributing
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are greatly appreciated.
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
 
 To contribute:<br>
 <ul>
