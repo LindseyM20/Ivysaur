@@ -1,5 +1,8 @@
 # xkcDaily
 
+Deployed at: https://xkcdaily.herokuapp.com/
+Repository: https://github.com/LindseyM20/xkcDaily/
+
   ## Table of contents
   - [Description](#Description)
   - [Motivation for Creation](#Motivation_for_Creation)
