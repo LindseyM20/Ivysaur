@@ -1,6 +1,6 @@
 # xkcDaily
 
-Deployed at: https://xkcdaily.herokuapp.com/
+Deployed at: https://xkcdaily.herokuapp.com/ <br>
 Repository: https://github.com/LindseyM20/xkcDaily/
 
   ## Table of contents
